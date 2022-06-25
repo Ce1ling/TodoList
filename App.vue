@@ -33,36 +33,40 @@ export default {
     };
   },
   methods: {
-    addThing(thingObj) {	// 添加thing: 定义一个函数给Header使用, 并用参数接收传过来的数据
+    addThing(thingObj) {
+      // 添加thing: 定义一个函数给Header使用, 并用参数接收传过来的数据
       this.things.unshift(thingObj);
     },
-    changeCheck(id) {		// 勾选和去取消勾选
+    changeCheck(id) {
+      // 勾选和去取消勾选
       // 遍历所有数据
       this.things.forEach((t) => {
         // 筛选符合条件的数据(传过来的id 等于 当前数据id的数据), 并把complete取反
         if (t.id === id) t.complete = !t.complete;
       });
-    },  
-    delThing(_, id) {		// 删除数据. 用消息订阅与发布实现, 记得第一个参数是消息名(不需要可以用 _ 占位), 后面才是数据
+    },
+    delThing(_, id) {
+      // 删除数据. 用消息订阅与发布实现, 记得第一个参数是消息名(不需要可以用 _ 占位), 后面才是数据
       // 筛除掉不符合掉件的数据, 生成新数组(因为filter就是会生成一个新数组)然后替换掉things
       this.things = this.things.filter((t) => t.id !== id);
     },
-    updateName(id, newVal) {		// 更新事件名
+    updateName(id, newVal) {
+      // 更新事件名
       this.things.forEach((t) => {
         if (t.id === id) {
           t.name = newVal;
         }
       });
     },
-    compAllThing(val) {		// 全选和取消全选
+    compAllThing(val) {
+      // 全选和取消全选
       this.things.forEach((t) => {
         t.complete = val;
       });
     },
-    cleanComp() {		// 清除所有已完成的thing
-      this.things = this.things.filter((t) => {
-        return !t.complete;
-      });
+    cleanComp() {
+      // 清除所有已完成的thing
+      this.things = this.things.filter((t) => !t.complete);
     },
   },
   watch: {
@@ -123,7 +127,7 @@ body {
 .btn-danger:hover {
   color: #fff;
   background-color: #f78989;
-	border-color: #f78989;
+  border-color: #f78989;
 }
 .btn-edit {
   color: #fff;
@@ -133,7 +137,7 @@ body {
 }
 .btn-edit:hover {
   background-color: #ffca7c;
-	color: #fff;
+  color: #fff;
 }
 .btn:focus {
   outline: none;
